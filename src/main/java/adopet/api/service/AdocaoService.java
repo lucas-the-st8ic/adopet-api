@@ -42,7 +42,7 @@ public class AdocaoService {
         adocaoRepository.save(new Adocao(tutor,pet, dto.motivo()));
     }
 
-    public void aprovar(AprovarAdocaoDTO dto){
+    public void aprovar(AprovarAdocaoDTO dto) {
         Adocao adocao = adocaoRepository.getReferenceById(dto.idAdocao());
         adocao.marcarComoAprovada();
         adocao.getPet().marcarComoAdotado();
