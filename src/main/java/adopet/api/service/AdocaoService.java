@@ -34,11 +34,22 @@ public class AdocaoService {
 
         return adocaoRepository.findById(id).stream().findFirst().map(AdocaoDTO::new).orElse(null);
     }
+/*Pet já adotado
+* Pet com solicitação de adoção em andamento
+* Tutor com 2 adoções aprovadas*/
 
     public void solicitar(SolicitacaoDeAdocaoDTO dto){
         Pet pet = petRepository.getReferenceById(dto.idPet());
         Tutor tutor = tutorRepository.getReferenceById(dto.idTutor());
+        Boolean petAdocaoEmAndamento = adocaoRepository.existsPetIdAndStatus(dto.idPet(),
+                StatusAdocao.AGUARDANDO_AVALIACAO);
+        if(pet.getAdotado()) {
 
+        }
+
+        if (petAdocaoEmAndamento) {
+            
+        }
         adocaoRepository.save(new Adocao(tutor,pet, dto.motivo()));
     }
 
